@@ -112,6 +112,133 @@
 #Button2:hover {
     background-color: #b02a37;
 }
+
+#GridView1 {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border-collapse: separate;
+}
+
+#GridView1 tbody {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#GridView1 tr:first-child {
+    display: none;
+}
+
+#GridView1 tr {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 220px;
+    background: white;
+    border: 1px solid #e1e5e9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#GridView1 td {
+    display: block;
+    padding: 8px 14px;
+    border: none;
+}
+
+#GridView1 td:first-child img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover;
+}
+
+#GridView1 td:nth-child(2) {
+    font-size: 18px;
+    font-weight: bold;
+    color: #173b57;
+}
+
+#GridView1 td:nth-child(3) {
+    font-size: 13px;
+    color: #666;
+}
+
+#GridView1 td:nth-child(4) {
+    font-size: 17px;
+    font-weight: bold;
+    color: #176b87;
+}
+
+#GridView1 a {
+    display: block;
+    padding: 9px;
+    margin-top: 5px;
+    border-radius: 5px;
+    background: #176b87;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.products-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.products-filter {
+    display: flex;
+    align-items: end;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 22px 0;
+}
+
+.products-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.products-footer {
+    margin-top: 40px;
+    padding: 22px;
+    color: white;
+    background: #173b57;
+    text-align: center;
+}
+
+.products-footer p {
+    margin: 5px 0;
+}
+
+.products-footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+.products-footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 650px) {
+    .products-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .products-filter {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
@@ -123,121 +250,68 @@
     </div>
 
     <div class="navbar">
-        <a href="Products.aspx">Home / Products</a>
+        <a href="Default.aspx">Home</a>
+        <a href="Products.aspx">Products</a>
         <a href="Cart.aspx">My Cart</a>
         <a href="Wishlist.aspx">My Wishlist</a>
     </div>
 
-    <div class="container">
-        <table class="auto-style1">
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Label ID="Label6" runat="server" Text="Welcome!"></asp:Label>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Logout" />
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2">
-                        
-                        <asp:Label ID="Label4" runat="server" Text="Our Products"></asp:Label>
-                    </td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="Label5" runat="server" Text="Category"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlCategories" runat="server">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Search" />
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        
-<asp:GridView ID="GridView1" runat="server" DataKeyNames="ProductId" OnRowCommand="GridView1_RowCommand">
-    <Columns>
-        <asp:ButtonField CommandName="AddToCart" Text="Add to Cart" />
-        <asp:ButtonField CommandName="AddToWishlist" Text="Add to Wishlist" />
-    </Columns>
-</asp:GridView>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
+   <div class="container">
+
+    <div class="products-toolbar">
+        <asp:Label ID="Label6" runat="server" Text="Welcome!"></asp:Label>
+        <asp:Button ID="Button2" runat="server"
+            OnClick="Button2_Click" Text="Logout" />
+    </div>
+
+    <asp:Label ID="Label4" runat="server" Text="Our Products"></asp:Label>
+
+    <div class="products-filter">
+        <div class="products-filter-group">
+            <asp:Label ID="Label5" runat="server" Text="Category"></asp:Label>
+            <asp:DropDownList ID="ddlCategories" runat="server">
+            </asp:DropDownList>
         </div>
+
+        <asp:Button ID="Button1" runat="server"
+            OnClick="Button1_Click" Text="Search" />
+    </div>
+
+    <asp:GridView ID="GridView1" runat="server"
+        DataKeyNames="ProductId"
+        AutoGenerateColumns="False"
+        OnRowCommand="GridView1_RowCommand">
+
+        <Columns>
+            <asp:TemplateField HeaderText="Image">
+                <ItemTemplate>
+                    <asp:Image ID="imgProduct" runat="server"
+                        ImageUrl='<%# Eval("ImageUrl") %>'
+                        AlternateText='<%# Eval("ProductName") %>'
+                        style="width:150px;height:150px;object-fit:cover;" />
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:BoundField DataField="ProductName" HeaderText="Product" />
+            <asp:BoundField DataField="Description" HeaderText="Description" />
+            <asp:BoundField DataField="Price" HeaderText="Price" />
+
+            <asp:ButtonField CommandName="AddToCart" Text="Add to Cart" />
+            <asp:ButtonField CommandName="AddToWishlist" Text="Add to Wishlist" />
+        </Columns>
+    </asp:GridView>
+
+</div>
+
+<footer class="products-footer">
+    <p>&copy; 2026 My E-Commerce Store. All rights reserved.</p>
+    <p>
+        <a href="Default.aspx">Home</a> |
+        <a href="Products.aspx">Products</a> |
+        <a href="Cart.aspx">My Cart</a> |
+        <a href="Wishlist.aspx">My Wishlist</a>
+    </p>
+</footer>
     </form>
 </body>
 </html>

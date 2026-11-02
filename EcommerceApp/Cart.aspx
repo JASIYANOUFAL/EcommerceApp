@@ -7,81 +7,88 @@
     <title>My Cart</title>
 
     <link href="Style.css" rel="stylesheet" type="text/css" />
+<style>
+     .cart-container {
+        margin: 20px;
+    }
 
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
+    .cart-title {
+        color: #173b57;
+        font-size: 28px;
+        font-weight: bold;
+    }
 
-        .auto-style2 {
-            height: 30px;
-        }
-       
-#Label1 {
-    display: block;
-    font-size: 28px;
-    font-weight: bold;
-    color: #173b57;
-    margin: 20px 0;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    margin-top: 20px;
-}
+    .cart-grid {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
 
-th {
-    background-color: #173b57;
+    .cart-grid th {
+        background-color: #173b57;
+        color: white;
+        padding: 10px;
+    }
+
+    .cart-grid td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .cart-product-image {
+        width: 85px;
+        height: 85px;
+    }
+
+    .cart-total {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .cart-actions {
+        margin-top: 20px;
+    }
+
+    #Button1,
+    #Button2 {
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #Button1 {
+        background-color: #6c757d;
+    }
+
+    #Button2 {
+        background-color: #198754;
+        margin-left: 10px;
+    }
+
+.products-footer {
+    margin-top: 40px;
+    padding: 22px;
     color: white;
-    padding: 12px;
+    background: #173b57;
+    text-align: center;
 }
 
-td {
-    padding: 12px;
-    border: 1px solid #ddd;
+.products-footer p {
+    margin: 5px 0;
 }
-input[type="submit"] {
-    background-color: #176b87;
+
+.products-footer a {
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
+    text-decoration: none;
+    margin: 0 8px;
 }
 
-input[type="submit"]:hover {
-    background-color: #104d63;
-}
-#Button1 {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
+.products-footer a:hover {
+    text-decoration: underline;
 }
 
-#Button1:hover {
-    background-color: #495057;
-}
-
-#Button2 {
-    background-color: #198754;
-    color: white;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-#Button2:hover {
-    background-color: #146c43;
-}
     </style>
 </head>
 <body>
@@ -95,113 +102,77 @@ input[type="submit"]:hover {
     <a href="Products.aspx">Home / Products</a>
     <a href="Cart.aspx">My Cart</a>
 </div>
-        <div>
-            <table class="auto-style1">
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Label ID="Label1" runat="server" Text="My Shoping Cart"></asp:Label>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CartItemId" OnRowDeleting="GridView1_RowDeleting" OnRowCommand="GridView1_RowCommand">                           
-                                <Columns>
-                                <asp:ButtonField ButtonType="Button" CommandName="Delete" Text="Remove" />
-                                <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
-                                <asp:BoundField DataField="Price" HeaderText="Price" />
-                                <asp:TemplateField HeaderText="Quantity">
-                                    <ItemTemplate>
-                                    <asp:TextBox ID="txtQuantity" runat="server"
-                                     Text='<%# Eval("Quantity") %>' Width="50px"></asp:TextBox>
-                                  </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Update">
-                                 <ItemTemplate>
-                                <asp:Button ID="btnUpdate" runat="server"
-                                         Text="Update"
-                                         CommandName="UpdateQuantity"
-                                         CommandArgument ='<%# Eval("CartItemId") %>' />
-                                 </ItemTemplate>
-                                </asp:TemplateField>
+        <div class="cart-container">
+    <asp:Label ID="Label1" runat="server"
+        Text="My Shopping Cart"
+        CssClass="cart-title"></asp:Label>
 
-                            </Columns>
-                        </asp:GridView>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Label ID="Label2" runat="server" Text="Total Amount : 0.00"></asp:Label>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2">
-                        <asp:Button ID="Button1" runat="server" Text="Continue Shopping" OnClick="Button1_Click" />
-                    </td>
-                    <td class="auto-style2"></td>
-                    <td class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <asp:Button ID="Button2" runat="server" Text="Checkout" OnClick="Button2_Click" />
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
-        </div>
+    <asp:GridView ID="GridView1" runat="server"
+        AutoGenerateColumns="False"
+        DataKeyNames="CartItemId,ProductId"
+        OnRowDeleting="GridView1_RowDeleting"
+        OnRowCommand="GridView1_RowCommand"
+        CssClass="cart-grid"
+        GridLines="None">
+
+        <Columns>
+            <asp:TemplateField HeaderText="Select">
+    <ItemTemplate>
+        <asp:CheckBox ID="chkSelect" runat="server" />
+    </ItemTemplate>
+</asp:TemplateField>
+            <asp:ButtonField ButtonType="Button"
+                CommandName="Delete"
+                Text="Remove" />
+
+            <asp:TemplateField HeaderText="Image">
+                <ItemTemplate>
+                    <asp:Image ID="imgProduct" runat="server"
+                        ImageUrl='<%# Eval("ImageUrl") %>'
+                        AlternateText='<%# Eval("ProductName") %>'
+                        CssClass="cart-product-image" />
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:BoundField DataField="ProductName" HeaderText="Product" />
+            <asp:BoundField DataField="Price" HeaderText="Price" />
+
+            <asp:TemplateField HeaderText="Quantity">
+                <ItemTemplate>
+                    <asp:TextBox ID="txtQuantity" runat="server"
+                        Text='<%# Eval("Quantity") %>'
+                        Width="50px"></asp:TextBox>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+           
+        </Columns>
+    </asp:GridView>
+
+    <div class="cart-total">
+        <asp:Label ID="Label2" runat="server"
+            Text="Total Amount : 0.00"></asp:Label>
+    </div>
+
+    <div class="cart-actions">
+        <asp:Button ID="Button1" runat="server"
+            Text="Continue Shopping"
+            OnClick="Button1_Click" />
+
+        <asp:Button ID="Button2" runat="server"
+            Text="Checkout"
+            OnClick="Button2_Click" />
+    </div>
+</div>
+        <footer class="products-footer">
+    <p>&copy; 2026 My E-Commerce Store. All rights reserved.</p>
+    <p>
+        <a href="Default.aspx">Home</a> |
+        <a href="Products.aspx">Products</a> |
+        <a href="Cart.aspx">My Cart</a> |
+        <a href="Wishlist.aspx">My Wishlist</a>
+    </p>
+</footer>
     </form>
 </body>
 </html>

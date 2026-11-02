@@ -41,7 +41,7 @@ namespace EcommerceApp
         {
             DBConnection db = new DBConnection();
             DataTable dt = db.executeDataTable(
-                "SELECT ProductId, ProductName, Price, Stock FROM Products"
+                "SELECT ProductId, ProductName, Description, Price, Stock, ImageUrl FROM Products"
             );
             GridView1.DataSource = dt;
             GridView1.DataBind();
@@ -54,12 +54,12 @@ namespace EcommerceApp
             string query;
             if (categoryId == "0")
             {
-                query = "SELECT ProductId, ProductName, Price, Stock FROM Products";
+                query = "SELECT ProductId, ProductName, Description, Price, Stock, ImageUrl FROM Products";
             }
             else
             {
-                query = "SELECT ProductId, ProductName, Price, Stock FROM Products WHERE CategoryId = "
-                        + categoryId;
+                query = "SELECT ProductId, ProductName, Description, Price, Stock, ImageUrl FROM Products WHERE CategoryId = "
+        + categoryId;
             }
             DataTable dt = db.executeDataTable(query);
             GridView1.DataSource = dt;
@@ -91,8 +91,8 @@ namespace EcommerceApp
             if (e.CommandName == "AddToCart")
             {
                 string cartQuery =
-                    "SELECT ISNULL((SELECT TOP 1 CartId FROM Cart WHERE UserId = "
-                    + userId + "), 0)";
+                    "SELECT ISNULL((SELECT TOP 1 CartId FROM Cart WHERE UserId = " +
+                    userId + "), 0)";
 
                 string cartIdResult = db.executeScalar(cartQuery);
 
@@ -105,11 +105,29 @@ namespace EcommerceApp
                     cartIdResult = db.executeScalar(createCartQuery);
                 }
 
-                string itemQuery =
-                    "INSERT INTO CartItems (CartId, ProductId, Quantity) VALUES (" +
-                    cartIdResult + ", " + productId + ", 1)";
+                string checkItemQuery =
+                    "SELECT COUNT(*) FROM CartItems WHERE CartId = " +
+                    cartIdResult + " AND ProductId = " + productId;
 
-                db.executeNonQuery(itemQuery);
+                string itemExists = db.executeScalar(checkItemQuery);
+
+                if (itemExists != "0")
+                {
+                    string updateQuery =
+                        "UPDATE CartItems SET Quantity = Quantity + 1 " +
+                        "WHERE CartId = " + cartIdResult +
+                        " AND ProductId = " + productId;
+
+                    db.executeNonQuery(updateQuery);
+                }
+                else
+                {
+                    string insertQuery =
+                        "INSERT INTO CartItems (CartId, ProductId, Quantity) VALUES (" +
+                        cartIdResult + ", " + productId + ", 1)";
+
+                    db.executeNonQuery(insertQuery);
+                }
 
                 Response.Redirect("Cart.aspx");
             }

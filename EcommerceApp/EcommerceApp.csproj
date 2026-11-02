@@ -69,6 +69,12 @@
   <ItemGroup>
     <Content Include="Cart.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Images\earbuds.jpg" />
+    <Content Include="Images\iphone.jpg" />
+    <Content Include="Images\laptop.jpg" />
+    <Content Include="Images\samsung.jpg" />
+    <Content Include="Images\shoes.jpg" />
+    <Content Include="Images\tshirt.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="OrderSuccess.aspx" />
     <Content Include="Products.aspx" />
@@ -131,6 +137,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -139,6 +146,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

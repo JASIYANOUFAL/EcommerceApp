@@ -76,10 +76,33 @@
     margin-top: 15px;
     text-align: center;
 }
+
+.register-header {
+    background: linear-gradient(120deg, #173b57, #176b87);
+    color: white;
+    padding: 24px 30px;
+}
+
+.register-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 28px;
+}
+
+.register-header h3 {
+    color: #d9eaf2;
+    margin: 8px 0 0;
+    font-size: 18px;
+    font-weight: normal;
+}
     </style>
 </head>
 <body>
      <form id="form1" runat="server">
+         <div class="register-header">
+    <h2>My E-Commerce Store</h2>
+    <h3>Register Page</h3>
+</div>
 
         <div class="register-box">
 
